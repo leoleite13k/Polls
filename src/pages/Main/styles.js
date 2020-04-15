@@ -1,0 +1,31 @@
+import styled from 'styled-components/native';
+
+export const Container = styled.View`
+  flex: 1;
+  background-color: #7159c1;
+`;
+
+export const Card = styled.TouchableHighlight.attrs({
+  underlayColor: '#E2DBF9',
+  activeOpacity: 0.8,
+  shadowColor: '#000',
+  shadowOffset: {
+    width: 0,
+    height: 1,
+  },
+  shadowOpacity: 0.22,
+  shadowRadius: 2.22,
+
+  elevation: 3,
+})`
+  height: 70px;
+  padding: 12px;
+  margin: 8px 12px;
+  border-radius: 5px;
+  background-color: #fff;
+`;
+
+export const Text = styled.Text`
+  color: #333;
+  font-size: 18px;
+`;
