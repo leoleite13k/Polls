@@ -5,18 +5,23 @@ export const Container = styled.View`
   background-color: #7159c1;
 `;
 
-export const Wrapper = styled.ScrollView.attrs({
-  contentContainerStyle: {
-    paddingTop: 22,
-    paddingRight: 12,
-    paddingLeft: 12,
-  },
+export const Wrapper = styled.View`
+  flex: 1;
+  padding-top: 22px;
+  padding-right: 12px;
+  padding-left: 12px;
+`;
+
+export const Form = styled.View``;
+
+export const Scroll = styled.ScrollView.attrs({
+  showsVerticalScrollIndicator: false,
 })`
   flex: 1;
 `;
 
 export const TextInput = styled.TextInput`
-  flex: 1;
+  min-height: 36px;
   max-height: 94px;
   padding: 8px;
   margin: 12px 0px;
@@ -27,11 +32,12 @@ export const TextInput = styled.TextInput`
 `;
 
 export const ContentOption = styled.View`
-  flex: 1;
   flex-direction: row;
   align-items: center;
+`;
 
-  margin-bottom: 26px;
+export const ContentInput = styled.View`
+  flex: 1;
 `;
 
 export const Row = styled.View`

@@ -5,7 +5,11 @@ export const Container = styled.View`
   background-color: #7159c1;
 `;
 
-export const List = styled.FlatList`
+export const List = styled.FlatList.attrs({
+  contentContainerStyle: {
+    paddingBottom: 32,
+  },
+})`
   padding-top: 12px;
 `;
 
@@ -32,4 +36,11 @@ export const Card = styled.TouchableHighlight.attrs({
 export const Text = styled.Text`
   color: #333;
   font-size: 18px;
+`;
+
+export const Load = styled.View`
+  height: 50px;
+  padding: 12px;
+  justify-content: center;
+  align-items: center;
 `;

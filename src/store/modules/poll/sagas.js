@@ -2,8 +2,9 @@ import { takeLatest, call, put, all } from 'redux-saga/effects';
 import { Alert } from 'react-native';
 
 import {
-  loadPollSuccess,
+  loadPollRequest,
   pollFailure,
+  loadPollSuccess,
   selectPollSuccess,
   addPollSuccess,
 } from './actions';
@@ -41,11 +42,14 @@ export function* addPoll({ payload }) {
     yield call(api.post, 'poll', data);
     yield put(addPollSuccess());
 
-    if (handleModal) {
-      handleModal();
-    }
+    handleModal();
+    yield setTimeout(() => {
+      Alert.alert('Cadastrada', 'Enquete cadastrada com sucesso!');
+    }, 500);
+
+    yield put(loadPollRequest());
   } catch (error) {
-    Alert.alert('Fala ao cadastrar', 'Falha ao cadastrar enquete');
+    Alert.alert('Falha ao cadastrar', 'Falha ao cadastrar enquete');
     yield put(pollFailure());
   }
 }

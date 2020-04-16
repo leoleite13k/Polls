@@ -12,7 +12,7 @@ export default function HeaderModal({ title, handleModal }) {
       </Center>
       <Right>
         <ButtonBack onPress={handleModal}>
-          <IconAnt name="close" size={22} color="#fff" />
+          <IconAnt name="close" size={24} color="#fff" />
         </ButtonBack>
       </Right>
     </Container>

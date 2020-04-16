@@ -34,7 +34,7 @@ export function addPollRequest(data, handleModal) {
 
 export function addPollSuccess() {
   return {
-    type: '@poll/ADD_POLL_SUCESS',
+    type: '@poll/ADD_POLL_SUCCESS',
   };
 }
 

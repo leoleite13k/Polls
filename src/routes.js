@@ -28,8 +28,13 @@ const Stack = createStackNavigator(
   {
     defaultNavigationOptions: {
       headerTintColor: '#fff',
+      headerTitleAlign: 'center',
+      headerBackTitle: 'Voltar',
       headerStyle: {
         backgroundColor: '#9681de',
+      },
+      headerTitleStyle: {
+        fontSize: 18,
       },
     },
   }

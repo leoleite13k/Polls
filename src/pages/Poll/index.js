@@ -13,7 +13,7 @@ export default function Poll({ navigation }) {
   const [optionSelected, setOptionSelected] = useState(null);
 
   const currentPoll = useSelector((state) => state.poll.currentPoll);
-  const loading = useSelector((state) => state.poll.loading);
+  const selecting = useSelector((state) => state.poll.selecting);
   const adding = useSelector((state) => state.vote.adding);
 
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ export default function Poll({ navigation }) {
 
   return (
     <Container>
-      {loading ? (
+      {selecting ? (
         <Loader />
       ) : (
         <Card>
@@ -43,7 +43,7 @@ export default function Poll({ navigation }) {
             <Question>{currentPoll.poll_description}</Question>
             {currentPoll.options.map((option) => (
               <Select
-                key={option.option_id}
+                key={String(option.option_id)}
                 onPress={() => handleSelectOption(option)}>
                 {option.option_id === optionSelected ? (
                   <IconIo

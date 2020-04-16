@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Modal } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { Modal, Alert } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import IconAnt from 'react-native-vector-icons/AntDesign';
 import IconIo from 'react-native-vector-icons/Ionicons';
 
@@ -9,8 +9,11 @@ import { addPollRequest } from '~/store/modules/poll/actions';
 import {
   Container,
   Wrapper,
+  Form,
   TextInput,
   ContentOption,
+  ContentInput,
+  Scroll,
   Row,
   Option,
   TextOption,
@@ -26,10 +29,13 @@ export default function ModalPoll({ visible, handleModal }) {
   const [currentOption, setCurrentOption] = useState('');
   const [listOptions, setListOptions] = useState([]);
 
+  const adding = useSelector((state) => state.poll.adding);
+
   const dispatch = useDispatch();
 
   function handleAddListOptions() {
     if (listOptions.find((option) => option === currentOption)) {
+      Alert.alert('Opção repetida', 'Opção já existente');
       return;
     }
 
@@ -53,6 +59,12 @@ export default function ModalPoll({ visible, handleModal }) {
 
   function handleAddPoll() {
     if (listOptions.length < 2) {
+      Alert.alert('Opções inválidas', 'Insira pelo menos 2 opções');
+      return;
+    }
+
+    if (question === '' || question === null || question === undefined) {
+      Alert.alert('Pergunta inexistente', 'Digite a pergunta');
       return;
     }
 
@@ -70,39 +82,45 @@ export default function ModalPoll({ visible, handleModal }) {
         <HeaderModal title="Nova Enquete" handleModal={handleModal} />
 
         <Wrapper>
-          <TextInput
-            placeholder="Pergunta"
-            multiline
-            autoFocus
-            onChangeText={(text) => setQuestion(text)}
-          />
-
-          <ContentOption>
+          <Form>
             <TextInput
-              placeholder="Opção"
-              onChangeText={(text) => setCurrentOption(text)}
-              value={currentOption}
+              placeholder="Pergunta"
+              multiline
+              autoFocus
+              onChangeText={(text) => setQuestion(text)}
             />
-            <Button onPress={handleAddListOptions}>
-              <IconIo name="ios-add" size={32} color="#7159c1" />
-            </Button>
-          </ContentOption>
 
-          {listOptions.map((option) => (
-            <Row key={option}>
-              <Option>
-                <TextOption>{option}</TextOption>
-              </Option>
-              <Button onPress={() => handleRemoveListOptions(option)}>
-                <IconAnt name="delete" size={20} color="#7159c1" />
+            <ContentOption>
+              <ContentInput>
+                <TextInput
+                  placeholder="Opção"
+                  onChangeText={(text) => setCurrentOption(text)}
+                  value={currentOption}
+                />
+              </ContentInput>
+              <Button onPress={handleAddListOptions}>
+                <IconIo name="ios-add" size={32} color="#7159c1" />
               </Button>
-            </Row>
-          ))}
-          <ButtonSend
-            disabled={listOptions.length === 0}
-            onPress={handleAddPoll}>
-            <TextButton>Cadastrar</TextButton>
-          </ButtonSend>
+            </ContentOption>
+          </Form>
+
+          <Scroll>
+            {listOptions.map((option) => (
+              <Row key={String(option)}>
+                <Option>
+                  <TextOption>{option}</TextOption>
+                </Option>
+                <Button onPress={() => handleRemoveListOptions(option)}>
+                  <IconAnt name="delete" size={20} color="#7159c1" />
+                </Button>
+              </Row>
+            ))}
+            <ButtonSend
+              disabled={listOptions.length === 0}
+              onPress={handleAddPoll}>
+              <TextButton>{adding ? 'Cadastrando...' : 'Cadastrar'}</TextButton>
+            </ButtonSend>
+          </Scroll>
         </Wrapper>
       </Container>
     </Modal>

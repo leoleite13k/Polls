@@ -11,7 +11,6 @@ import {
   Row,
   WrapperOption,
   Option,
-  WrapperBar,
   Bar,
   Votes,
 } from './styles';
@@ -70,7 +69,7 @@ export default function Stats({ navigation }) {
     if (votes.length > 0) {
       Animated.timing(widthProgress, {
         toValue: 100,
-        duration: 5000,
+        duration: 2000,
         useNativeDriver: false,
       }).start();
     }
@@ -78,13 +77,13 @@ export default function Stats({ navigation }) {
 
   return (
     <Container>
-      {loading ? (
+      {loading || votes.length === 0 ? (
         <Loader />
       ) : (
         <Card>
           <Title>Estatística</Title>
           {votes.map((vote) => (
-            <Row key={vote.option_id}>
+            <Row key={String(vote.option_id)}>
               <WrapperOption>
                 <Option>{vote.option_description}</Option>
               </WrapperOption>

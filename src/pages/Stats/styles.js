@@ -53,11 +53,17 @@ export const Option = styled.Text.attrs({
   margin-right: 5px;
 `;
 
-export const WrapperBar = styled.View`
-  flex: 1;
-`;
+export const Bar = styled.View.attrs({
+  shadowColor: '#000',
+  shadowOffset: {
+    width: 0,
+    height: 2,
+  },
+  shadowOpacity: 0.25,
+  shadowRadius: 3.84,
 
-export const Bar = styled.View`
+  elevation: 5,
+})`
   width: ${(props) => props.width || 0}%;
   background-color: #7159c1;
 `;
