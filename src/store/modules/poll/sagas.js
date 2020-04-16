@@ -36,10 +36,14 @@ export function* selectPoll({ payload }) {
 
 export function* addPoll({ payload }) {
   try {
-    const { data } = payload;
+    const { data, handleModal } = payload;
 
     yield call(api.post, 'poll', data);
     yield put(addPollSuccess());
+
+    if (handleModal) {
+      handleModal();
+    }
   } catch (error) {
     Alert.alert('Fala ao cadastrar', 'Falha ao cadastrar enquete');
     yield put(pollFailure());

@@ -25,16 +25,16 @@ export function selectPollSuccess(data) {
   };
 }
 
-export function addPollRequest(data) {
+export function addPollRequest(data, handleModal) {
   return {
     type: '@poll/ADD_POLL_REQUEST',
-    payload: { data },
+    payload: { data, handleModal },
   };
 }
 
 export function addPollSuccess() {
   return {
-    type: '@poll/ADD_POLL_REQUEST',
+    type: '@poll/ADD_POLL_SUCESS',
   };
 }
 

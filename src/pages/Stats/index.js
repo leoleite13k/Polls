@@ -84,7 +84,7 @@ export default function Stats({ navigation }) {
         <Card>
           <Title>Estatística</Title>
           {votes.map((vote) => (
-            <Row>
+            <Row key={vote.option_id}>
               <WrapperOption>
                 <Option>{vote.option_description}</Option>
               </WrapperOption>
