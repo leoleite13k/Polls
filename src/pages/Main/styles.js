@@ -5,6 +5,10 @@ export const Container = styled.View`
   background-color: #7159c1;
 `;
 
+export const List = styled.FlatList`
+  padding-top: 12px;
+`;
+
 export const Card = styled.TouchableHighlight.attrs({
   underlayColor: '#E2DBF9',
   activeOpacity: 0.8,

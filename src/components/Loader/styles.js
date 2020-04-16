@@ -8,8 +8,7 @@ export const Container = styled.View`
 `;
 
 export const Load = styled.Text`
-  /* font-family: 'Roboto-Bold'; */
-  font-size: 17;
+  font-size: 17px;
   color: #ccc;
 `;
 

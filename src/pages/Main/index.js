@@ -1,36 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import { FlatList } from 'react-native';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { Container, Card, Text } from './styles';
+import { Container, List, Card, Text } from './styles';
 
-import api from '~/services/api';
 import Loader from '~/components/Loader';
+import {
+  loadPollRequest,
+  selectPollRequest,
+} from '~/store/modules/poll/actions';
 
-export default function Main() {
-  const [loading, setLoading] = useState(true);
-  const [polls, setPolls] = useState([]);
+export default function Main({ navigation }) {
+  const polls = useSelector((state) => state.poll.data);
+  const loading = useSelector((state) => state.poll.loading);
 
-  async function getPolls() {
-    const { data } = await api.get('poll');
+  const dispatch = useDispatch();
 
-    setPolls(data);
-    setLoading(false);
+  function handleSelectPoll({ poll_id }) {
+    dispatch(selectPollRequest(poll_id));
+    navigation.navigate('Poll');
   }
 
   useEffect(() => {
-    getPolls();
-  }, []);
+    dispatch(loadPollRequest());
+  }, [dispatch]);
 
   return (
     <Container>
-      {loading ? (
+      {loading && polls.length === 0 ? (
         <Loader />
       ) : (
-        <FlatList
+        <List
           keyExtractor={(item) => item.poll_id}
           data={polls}
           renderItem={({ item, index }) => (
-            <Card onPress={() => {}}>
+            <Card onPress={() => handleSelectPoll(item)}>
               <Text>{item.poll_description}</Text>
             </Card>
           )}

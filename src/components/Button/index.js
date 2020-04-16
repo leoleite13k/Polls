@@ -1,8 +1,11 @@
 import React from 'react';
-import { View } from 'react-native';
 
-// import { Container } from './styles';
+import { Container, TextButton } from './styles';
 
-export default function Button() {
-  return <View />;
+export default function Button({ text, marginTop, onPress }) {
+  return (
+    <Container marginTop={marginTop} onPress={onPress}>
+      <TextButton>{text}</TextButton>
+    </Container>
+  );
 }

@@ -1,12 +1,15 @@
 import styled from 'styled-components/native';
 
-export const Container = styled.View`
-  flex: 1;
+export const Container = styled.ScrollView.attrs({
+  contentContainerStyle: {
+    flex: 1,
+  },
+})`
+  padding-top: 16px;
   background-color: #7159c1;
 `;
 
 export const Card = styled.View.attrs({
-  activeOpacity: 0.8,
   shadowColor: '#000',
   shadowOffset: {
     width: 0,
@@ -27,9 +30,22 @@ export const Question = styled.Text`
   color: #333;
   font-size: 18px;
   font-weight: bold;
+
+  margin-bottom: 12px;
+`;
+
+export const Select = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.7,
+})`
+  flex-direction: row;
+  width: auto;
+  align-items: center;
+  margin-top: 8px;
 `;
 
 export const Answer = styled.Text`
   color: #333;
-  font-size: 16px;
+  font-size: 17px;
+  margin-left: 12px;
+  margin-bottom: 3px;
 `;
