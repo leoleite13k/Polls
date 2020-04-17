@@ -8,7 +8,7 @@ import {
   selectPollRequest,
 } from '~/store/modules/poll/actions';
 
-import { Container, List, Card, Text, Load } from './styles';
+import { Container, Search, Input, List, Card, Text, Load } from './styles';
 
 import ModalPoll from './ModalPoll';
 import Loader from '~/components/Loader';
@@ -17,24 +17,15 @@ const pageSize = 20;
 
 export default function Main({ navigation }) {
   const [page, setPage] = useState(1);
+  const [textSearch, setTextSearch] = useState('');
   const [listPolls, setListPolls] = useState([]);
+  const [listPollsSearch, setListPollsSearch] = useState([]);
   const [visibleModalPoll, setVisibleModalPoll] = useState(false);
 
   const polls = useSelector((state) => state.poll.data);
   const loading = useSelector((state) => state.poll.loading);
 
   const dispatch = useDispatch();
-
-  function renderFooter() {
-    if (!loading && listPolls.length < pageSize) {
-      return null;
-    }
-    return (
-      <Load>
-        <ActivityIndicator size="large" color="#fff" />
-      </Load>
-    );
-  }
 
   function handleSelectPoll({ poll_id }) {
     dispatch(selectPollRequest(poll_id));
@@ -47,14 +38,52 @@ export default function Main({ navigation }) {
 
   function handleLoadMore() {
     const currentPage = page + 1;
+    let newPolls = [];
 
-    const newPolls = polls.slice(
-      (currentPage - 1) * pageSize,
-      currentPage * pageSize
-    );
+    if (textSearch === '') {
+      newPolls = polls.slice(
+        (currentPage - 1) * pageSize,
+        currentPage * pageSize
+      );
+    } else {
+      newPolls = listPollsSearch.slice(
+        (currentPage - 1) * pageSize,
+        currentPage * pageSize
+      );
+    }
 
     setPage(currentPage);
     setListPolls([...listPolls, ...newPolls]);
+  }
+
+  function handleChangeSearch(text) {
+    const filterPolls = polls.filter((poll) =>
+      poll.poll_description.toLowerCase().match(text.toLowerCase())
+    );
+
+    const newPolls = filterPolls.slice(0, pageSize);
+
+    console.tron.log(filterPolls);
+
+    setTextSearch(text);
+    setListPolls(newPolls);
+    setListPollsSearch(filterPolls);
+    setPage(1);
+  }
+
+  function renderFooter() {
+    if (
+      (!loading && listPolls.length < pageSize) ||
+      listPolls.length === polls.length ||
+      listPolls.length === listPollsSearch.length
+    ) {
+      return null;
+    }
+    return (
+      <Load>
+        <ActivityIndicator size="large" color="#fff" />
+      </Load>
+    );
   }
 
   useEffect(() => {
@@ -72,6 +101,14 @@ export default function Main({ navigation }) {
         <Loader />
       ) : (
         <>
+          <Search>
+            <Input
+              placeholder="Procurar"
+              value={textSearch}
+              onChangeText={(text) => handleChangeSearch(text)}
+            />
+          </Search>
+
           <List
             data={listPolls}
             keyExtractor={(item) => String(item.poll_id)}

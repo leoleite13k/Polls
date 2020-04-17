@@ -23,7 +23,7 @@ export const Scroll = styled.ScrollView.attrs({
 export const TextInput = styled.TextInput`
   min-height: 36px;
   max-height: 94px;
-  padding: 8px;
+  padding: 4px;
   margin: 12px 0px;
   border-radius: 5px;
   background-color: #fff;

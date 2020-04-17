@@ -1,11 +1,13 @@
 import styled from 'styled-components/native';
+import { Platform } from 'react-native';
+import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 
 export const Container = styled.ScrollView.attrs({
   contentContainerStyle: {
     flex: 1,
   },
 })`
-  padding: 76px 12px 32px;
+  padding: ${Platform.OS === 'ios' ? 50 + getStatusBarHeight() : 50}px 12px 32px;
   background-color: #7159c1;
 `;
 

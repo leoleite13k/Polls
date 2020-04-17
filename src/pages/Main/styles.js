@@ -5,13 +5,31 @@ export const Container = styled.View`
   background-color: #7159c1;
 `;
 
+export const Search = styled.View`
+  padding: 16px;
+  background-color: #806bc9;
+`;
+
+export const Input = styled.TextInput.attrs({
+  autoCorrect: false,
+  autoCompleteType: 'off',
+  selectionColor: '#7159c1',
+})`
+  font-size: 16px;
+
+  height: 36px;
+  color: #333;
+  padding: 6px;
+  border-radius: 5px;
+  background-color: #fff;
+`;
+
 export const List = styled.FlatList.attrs({
   contentContainerStyle: {
+    paddingTop: 12,
     paddingBottom: 32,
   },
-})`
-  padding-top: 12px;
-`;
+})``;
 
 export const Card = styled.TouchableHighlight.attrs({
   underlayColor: '#E2DBF9',

@@ -38,14 +38,12 @@ export const Select = styled.TouchableOpacity.attrs({
   activeOpacity: 0.7,
 })`
   flex-direction: row;
-  width: auto;
-  align-items: center;
-  margin-top: 8px;
+  margin-top: 12px;
 `;
 
 export const Answer = styled.Text`
   color: #333;
   font-size: 17px;
   margin-left: 12px;
-  margin-bottom: 3px;
+  margin-top: 2px;
 `;
