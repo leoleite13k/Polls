@@ -44,14 +44,16 @@ export default function poll(state = INITIAL_STATE, action) {
 
       case '@poll/ADD_POLL_SUCCESS': {
         draft.adding = false;
+        draft.selecting = false;
         draft.loading = false;
         draft.error = false;
         break;
       }
 
       case '@poll/POLL_FAILURE': {
-        draft.loading = false;
         draft.adding = false;
+        draft.selecting = false;
+        draft.loading = false;
         draft.error = true;
         break;
       }

@@ -15,7 +15,7 @@ export function* addVote({ payload }) {
 
     navigation.navigate('Stats');
   } catch (error) {
-    Alert.alert('Fala ao cadastrar', 'Falha ao cadastrar o voto');
+    Alert.alert('Erro ao cadastrar', 'Falha ao cadastrar o voto');
     yield put(voteFailure());
   }
 }

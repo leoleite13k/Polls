@@ -13,7 +13,7 @@ export function* loadStats({ payload }) {
 
     yield put(loadStatsSuccess(data));
   } catch (error) {
-    Alert.alert('Fala ao carregar', 'Falha ao carregar a estatística');
+    Alert.alert('Erro ao carregar', 'Falha ao carregar a estatística');
     yield put(statsFailure());
   }
 }

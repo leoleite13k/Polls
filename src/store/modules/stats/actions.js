@@ -14,6 +14,6 @@ export function loadStatsSuccess(data) {
 
 export function statsFailure() {
   return {
-    type: '@stats/LOAD_STATS_FAILURE',
+    type: '@stats/STATS_FAILURE',
   };
 }

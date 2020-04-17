@@ -45,7 +45,7 @@ export const Card = styled.TouchableHighlight.attrs({
   elevation: 3,
 })`
   height: 70px;
-  padding: 12px;
+  padding: 8px;
   margin: 8px 12px;
   border-radius: 5px;
   background-color: #fff;

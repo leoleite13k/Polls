@@ -77,12 +77,12 @@ export const ButtonSend = styled.TouchableOpacity.attrs({
   margin: 36px 0px;
   padding: 12px;
   border-radius: 5px;
-  background-color: #fff;
+  background-color: ${(props) => (props.disabled ? '#ccc' : '#fff')};
 `;
 
 export const TextButton = styled.Text`
   font-size: 17px;
   font-weight: bold;
   text-align: center;
-  color: #7159c1;
+  color: ${(props) => (props.disabled ? '#fff' : '#7159c1')};
 `;

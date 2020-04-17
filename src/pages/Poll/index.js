@@ -63,8 +63,9 @@ export default function Poll({ navigation }) {
             ))}
 
             <Button
+              disabled={!optionSelected}
+              text={adding ? 'Enviando...' : 'Responder'}
               onPress={handleSendAnswer}
-              text={adding ? 'Respondendo...' : 'Responder'}
             />
           </>
         </Card>

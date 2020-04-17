@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { Container, TextButton } from './styles';
+import { Touchable, TextButton } from './styles';
 
-export default function Button({ text, marginTop, onPress }) {
+export default function Button({ text, marginTop, onPress, ...props }) {
   return (
-    <Container marginTop={marginTop} onPress={onPress}>
+    <Touchable marginTop={marginTop} onPress={onPress} {...props}>
       <TextButton>{text}</TextButton>
-    </Container>
+    </Touchable>
   );
 }

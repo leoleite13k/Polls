@@ -58,13 +58,13 @@ export default function ModalPoll({ visible, handleModal }) {
   }
 
   function handleAddPoll() {
-    if (listOptions.length < 2) {
-      Alert.alert('Opções inválidas', 'Insira pelo menos 2 opções');
+    if (question === '' || question === null || question === undefined) {
+      Alert.alert('Pergunta inexistente', 'Digite a pergunta');
       return;
     }
 
-    if (question === '' || question === null || question === undefined) {
-      Alert.alert('Pergunta inexistente', 'Digite a pergunta');
+    if (listOptions.length < 2) {
+      Alert.alert('Opções inválidas', 'Insira pelo menos 2 opções');
       return;
     }
 
@@ -115,9 +115,7 @@ export default function ModalPoll({ visible, handleModal }) {
                 </Button>
               </Row>
             ))}
-            <ButtonSend
-              disabled={listOptions.length === 0}
-              onPress={handleAddPoll}>
+            <ButtonSend onPress={handleAddPoll}>
               <TextButton>{adding ? 'Cadastrando...' : 'Cadastrar'}</TextButton>
             </ButtonSend>
           </Scroll>

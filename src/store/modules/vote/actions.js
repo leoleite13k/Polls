@@ -13,6 +13,6 @@ export function addVoteSuccess() {
 
 export function voteFailure() {
   return {
-    type: '@vote/ADD_VOTE_FAILURE',
+    type: '@vote/VOTE_FAILURE',
   };
 }

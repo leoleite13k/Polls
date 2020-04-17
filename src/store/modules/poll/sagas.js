@@ -17,7 +17,7 @@ export function* loadPoll({ payload }) {
 
     yield put(loadPollSuccess(data));
   } catch (error) {
-    Alert.alert('Falha ao carregar', 'Falha ao carregar as enquetes');
+    Alert.alert('Erro ao carregar', 'Falha ao carregar as enquetes');
     yield put(pollFailure());
   }
 }
@@ -30,7 +30,7 @@ export function* selectPoll({ payload }) {
 
     yield put(selectPollSuccess(data));
   } catch (error) {
-    Alert.alert('Falha ao carregar', 'Falha ao carregar a enquete');
+    Alert.alert('Erro ao carregar', 'Falha ao carregar a enquete');
     yield put(pollFailure());
   }
 }
@@ -49,7 +49,7 @@ export function* addPoll({ payload }) {
 
     yield put(loadPollRequest());
   } catch (error) {
-    Alert.alert('Falha ao cadastrar', 'Falha ao cadastrar enquete');
+    Alert.alert('Erro ao cadastrar', 'Falha ao cadastrar enquete');
     yield put(pollFailure());
   }
 }

@@ -40,6 +40,6 @@ export function addPollSuccess() {
 
 export function pollFailure() {
   return {
-    type: '@poll/ADD_POLL_FAILURE',
+    type: '@poll/POLL_FAILURE',
   };
 }

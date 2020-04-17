@@ -63,8 +63,6 @@ export default function Main({ navigation }) {
 
     const newPolls = filterPolls.slice(0, pageSize);
 
-    console.tron.log(filterPolls);
-
     setTextSearch(text);
     setListPolls(newPolls);
     setListPollsSearch(filterPolls);
