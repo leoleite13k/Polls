@@ -38,6 +38,12 @@ export function addPollSuccess() {
   };
 }
 
+export function pollLoading() {
+  return {
+    type: '@poll/LOADING',
+  };
+}
+
 export function pollFailure() {
   return {
     type: '@poll/POLL_FAILURE',

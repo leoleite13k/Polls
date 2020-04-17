@@ -87,6 +87,7 @@ export default function ModalPoll({ visible, handleModal }) {
               placeholder="Pergunta"
               multiline
               autoFocus
+              maxLength={255}
               onChangeText={(text) => setQuestion(text)}
             />
 
@@ -94,8 +95,9 @@ export default function ModalPoll({ visible, handleModal }) {
               <ContentInput>
                 <TextInput
                   placeholder="Opção"
-                  onChangeText={(text) => setCurrentOption(text)}
+                  maxLength={150}
                   value={currentOption}
+                  onChangeText={(text) => setCurrentOption(text)}
                 />
               </ContentInput>
               <Button onPress={handleAddListOptions}>

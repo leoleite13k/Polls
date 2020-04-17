@@ -44,14 +44,16 @@ export const Card = styled.TouchableHighlight.attrs({
 
   elevation: 3,
 })`
-  height: 70px;
+  height: 90px;
   padding: 8px;
   margin: 8px 12px;
   border-radius: 5px;
   background-color: #fff;
 `;
 
-export const Text = styled.Text`
+export const Text = styled.Text.attrs({
+  numberOfLines: 4,
+})`
   color: #333;
   font-size: 18px;
 `;

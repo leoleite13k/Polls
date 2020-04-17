@@ -50,6 +50,11 @@ export default function poll(state = INITIAL_STATE, action) {
         break;
       }
 
+      case '@poll/LOADING': {
+        draft.loading = true;
+        break;
+      }
+
       case '@poll/POLL_FAILURE': {
         draft.adding = false;
         draft.selecting = false;

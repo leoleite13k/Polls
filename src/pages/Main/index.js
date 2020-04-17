@@ -102,6 +102,7 @@ export default function Main({ navigation }) {
           <Search>
             <Input
               placeholder="Procurar"
+              maxLength={255}
               value={textSearch}
               onChangeText={(text) => handleChangeSearch(text)}
             />

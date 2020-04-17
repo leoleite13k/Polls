@@ -3,6 +3,7 @@ import { Animated } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { loadStatsRequest } from '~/store/modules/stats/actions';
+import { pollLoading } from '~/store/modules/poll/actions';
 
 import {
   Container,
@@ -30,6 +31,7 @@ export default function Stats({ navigation }) {
   const dispatch = useDispatch();
 
   function handleBack() {
+    dispatch(pollLoading());
     navigation.navigate('Home');
   }
 

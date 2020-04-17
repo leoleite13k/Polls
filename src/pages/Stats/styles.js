@@ -22,7 +22,6 @@ export const Card = styled.View.attrs({
 
   elevation: 3,
 })`
-  /* flex: 1; */
   padding: 12px;
   border-radius: 5px;
   background-color: #fff;
