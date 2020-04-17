@@ -9,6 +9,7 @@ export const Container = styled.View`
 
 export const Load = styled.Text`
   font-size: 17px;
+  font-weight: bold;
   color: #ccc;
 `;
 
