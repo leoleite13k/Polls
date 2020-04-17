@@ -24,11 +24,15 @@ export function* loadPoll({ payload }) {
 
 export function* selectPoll({ payload }) {
   try {
-    const { id } = payload;
+    const { id, navigation, screen } = payload;
 
     const { data } = yield call(api.get, `poll/${id}`);
 
     yield put(selectPollSuccess(data));
+
+    if (screen) {
+      navigation.navigate(screen, { home: screen === 'Stats' });
+    }
   } catch (error) {
     Alert.alert('Erro ao carregar', 'Falha ao carregar a enquete');
     yield put(pollFailure());

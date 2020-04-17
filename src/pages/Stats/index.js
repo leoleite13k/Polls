@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Animated } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import IconIo from 'react-native-vector-icons/Ionicons';
 
 import { loadStatsRequest } from '~/store/modules/stats/actions';
 import { pollLoading } from '~/store/modules/poll/actions';
@@ -10,6 +11,7 @@ import {
   Card,
   Title,
   Row,
+  WrapperVote,
   WrapperOption,
   Option,
   Bar,
@@ -24,11 +26,14 @@ export default function Stats({ navigation }) {
 
   const [widthProgress] = useState(new Animated.Value(0));
 
+  const currentVote = useSelector((state) => state.vote.data);
   const stats = useSelector((state) => state.stats.data);
   const loading = useSelector((state) => state.stats.loading);
   const currentPoll = useSelector((state) => state.poll.currentPoll);
 
   const dispatch = useDispatch();
+
+  const home = navigation.state.params ? navigation.state.params.home : false;
 
   function handleBack() {
     dispatch(pollLoading());
@@ -83,9 +88,26 @@ export default function Stats({ navigation }) {
         <Loader />
       ) : (
         <Card>
-          <Title>Estatística</Title>
+          <Title>Estatísticas</Title>
           {votes.map((vote) => (
             <Row key={String(vote.option_id)}>
+              {!home && (
+                <WrapperVote>
+                  {currentVote.option_id === vote.option_id ? (
+                    <IconIo
+                      name="ios-radio-button-on"
+                      size={20}
+                      color="#7159c1"
+                    />
+                  ) : (
+                    <IconIo
+                      name="ios-radio-button-off"
+                      size={20}
+                      color="#7159c1"
+                    />
+                  )}
+                </WrapperVote>
+              )}
               <WrapperOption>
                 <Option>{vote.option_description}</Option>
               </WrapperOption>

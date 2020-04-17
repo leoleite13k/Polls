@@ -11,10 +11,10 @@ export function loadPollSuccess(data) {
   };
 }
 
-export function selectPollRequest(id) {
+export function selectPollRequest(id, navigation, screen) {
   return {
     type: '@poll/SELECT_POLL_REQUEST',
-    payload: { id },
+    payload: { id, navigation, screen },
   };
 }
 

@@ -15,20 +15,24 @@ export const Card = styled.View.attrs({
   shadowColor: '#000',
   shadowOffset: {
     width: 0,
-    height: 1,
+    height: 3,
   },
-  shadowOpacity: 0.22,
-  shadowRadius: 2.22,
+  shadowOpacity: 0.27,
+  shadowRadius: 4.65,
 
-  elevation: 3,
+  elevation: 6,
 })`
   padding: 12px;
   border-radius: 5px;
   background-color: #fff;
 `;
 
+export const WrapperVote = styled.View`
+  margin-right: 4px;
+`;
+
 export const WrapperOption = styled.View`
-  width: 35%;
+  width: 36%;
 `;
 
 export const Title = styled.Text`
@@ -42,7 +46,7 @@ export const Title = styled.Text`
 export const Row = styled.View`
   flex-direction: row;
 
-  margin: 12px 8px;
+  margin: 12px 6px;
 `;
 
 export const Option = styled.Text.attrs({
@@ -60,10 +64,10 @@ export const Bar = styled.View.attrs({
     width: 0,
     height: 2,
   },
-  shadowOpacity: 0.25,
-  shadowRadius: 3.84,
+  shadowOpacity: 0.23,
+  shadowRadius: 2.62,
 
-  elevation: 5,
+  elevation: 4,
 })`
   width: ${(props) => props.width || 0}%;
   background-color: #7159c1;

@@ -7,11 +7,11 @@ import api from '~/services/api';
 
 export function* addVote({ payload }) {
   try {
-    const { data, navigation } = payload;
-    const { poll_id, ...vote } = data;
+    const { vote, navigation } = payload;
+    const { poll_id, ...newVote } = vote;
 
-    yield call(api.post, `poll/${poll_id}/vote`, vote);
-    yield put(addVoteSuccess());
+    yield call(api.post, `poll/${poll_id}/vote`, newVote);
+    yield put(addVoteSuccess(newVote));
 
     navigation.navigate('Stats');
   } catch (error) {

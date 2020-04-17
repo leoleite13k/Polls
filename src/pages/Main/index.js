@@ -8,7 +8,20 @@ import {
   selectPollRequest,
 } from '~/store/modules/poll/actions';
 
-import { Container, Search, Input, List, Card, Text, Load } from './styles';
+import {
+  Container,
+  Search,
+  Input,
+  List,
+  Card,
+  WapperQuestion,
+  Text,
+  WrapperStats,
+  SpaceStats,
+  TouchableStats,
+  Stats,
+  Load,
+} from './styles';
 
 import ModalPoll from './ModalPoll';
 import Loader from '~/components/Loader';
@@ -28,8 +41,11 @@ export default function Main({ navigation }) {
   const dispatch = useDispatch();
 
   function handleSelectPoll({ poll_id }) {
-    dispatch(selectPollRequest(poll_id));
-    navigation.navigate('Poll');
+    dispatch(selectPollRequest(poll_id, navigation, 'Poll'));
+  }
+
+  function handleSelectStats({ poll_id }) {
+    dispatch(selectPollRequest(poll_id, navigation, 'Stats'));
   }
 
   function handleModalPoll() {
@@ -116,7 +132,18 @@ export default function Main({ navigation }) {
             scrollEventThrottle={16}
             renderItem={({ item, index }) => (
               <Card onPress={() => handleSelectPoll(item)}>
-                <Text>{item.poll_description}</Text>
+                <>
+                  <WapperQuestion>
+                    <Text>{item.poll_description}</Text>
+                  </WapperQuestion>
+
+                  <WrapperStats>
+                    <SpaceStats />
+                    <TouchableStats onPress={() => handleSelectStats(item)}>
+                      <Stats>Ver estatísticas</Stats>
+                    </TouchableStats>
+                  </WrapperStats>
+                </>
               </Card>
             )}
             ListFooterComponent={renderFooter}

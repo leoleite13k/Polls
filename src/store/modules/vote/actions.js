@@ -1,13 +1,14 @@
-export function addVoteRequest(data, navigation) {
+export function addVoteRequest(vote, navigation) {
   return {
     type: '@vote/ADD_VOTE_REQUEST',
-    payload: { data, navigation },
+    payload: { vote, navigation },
   };
 }
 
-export function addVoteSuccess() {
+export function addVoteSuccess(data) {
   return {
     type: '@vote/ADD_VOTE_SUCCESS',
+    payload: { data },
   };
 }
 

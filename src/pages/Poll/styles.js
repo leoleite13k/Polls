@@ -13,12 +13,12 @@ export const Card = styled.View.attrs({
   shadowColor: '#000',
   shadowOffset: {
     width: 0,
-    height: 1,
+    height: 3,
   },
-  shadowOpacity: 0.22,
-  shadowRadius: 2.22,
+  shadowOpacity: 0.27,
+  shadowRadius: 4.65,
 
-  elevation: 3,
+  elevation: 6,
 })`
   padding: 12px;
   margin: 8px 12px;
@@ -39,11 +39,12 @@ export const Select = styled.TouchableOpacity.attrs({
 })`
   flex-direction: row;
   margin-top: 12px;
+  padding-right: 24px;
 `;
 
 export const Answer = styled.Text`
   color: #333;
   font-size: 17px;
   margin-left: 12px;
-  margin-top: 2px;
+  margin-top: 1px;
 `;
