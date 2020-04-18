@@ -6,8 +6,9 @@ export const Container = styled.SafeAreaView`
 `;
 
 export const Scroll = styled.ScrollView.attrs({
+  scrollEnabled: true,
   contentContainerStyle: {
-    flex: 1,
+    flexGrow: 1,
   },
 })`
   padding-top: 16px;
