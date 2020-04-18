@@ -21,11 +21,10 @@ export const WrapperScroll = styled.SafeAreaView`
 export const Scroll = styled.ScrollView.attrs({
   showsVerticalScrollIndicator: false,
   contentContainerStyle: {
-    flexGrow: 1,
     paddingBottom: 32,
   },
 })`
-  flex: 1;
+  flex-grow: 1;
 `;
 
 export const TextInput = styled.TextInput`
