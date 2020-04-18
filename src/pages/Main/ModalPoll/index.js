@@ -13,6 +13,7 @@ import {
   TextInput,
   ContentOption,
   ContentInput,
+  WrapperScroll,
   Scroll,
   Row,
   Option,
@@ -106,21 +107,25 @@ export default function ModalPoll({ visible, handleModal }) {
             </ContentOption>
           </Form>
 
-          <Scroll>
-            {listOptions.map((option) => (
-              <Row key={String(option)}>
-                <Option>
-                  <TextOption>{option}</TextOption>
-                </Option>
-                <Button onPress={() => handleRemoveListOptions(option)}>
-                  <IconAnt name="delete" size={20} color="#7159c1" />
-                </Button>
-              </Row>
-            ))}
-            <ButtonSend onPress={handleAddPoll}>
-              <TextButton>{adding ? 'Cadastrando...' : 'Cadastrar'}</TextButton>
-            </ButtonSend>
-          </Scroll>
+          <WrapperScroll>
+            <Scroll>
+              {listOptions.map((option) => (
+                <Row key={String(option)}>
+                  <Option>
+                    <TextOption>{option}</TextOption>
+                  </Option>
+                  <Button onPress={() => handleRemoveListOptions(option)}>
+                    <IconAnt name="delete" size={20} color="#7159c1" />
+                  </Button>
+                </Row>
+              ))}
+              <ButtonSend onPress={handleAddPoll}>
+                <TextButton>
+                  {adding ? 'Cadastrando...' : 'Cadastrar'}
+                </TextButton>
+              </ButtonSend>
+            </Scroll>
+          </WrapperScroll>
         </Wrapper>
       </Container>
     </Modal>

@@ -14,6 +14,10 @@ export const Wrapper = styled.View`
 
 export const Form = styled.View``;
 
+export const WrapperScroll = styled.SafeAreaView`
+  flex: 1;
+`;
+
 export const Scroll = styled.ScrollView.attrs({
   showsVerticalScrollIndicator: false,
 })`
