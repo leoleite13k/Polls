@@ -1,14 +1,16 @@
 import styled from 'styled-components/native';
-import { Platform } from 'react-native';
-import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 
-export const Container = styled.ScrollView.attrs({
+export const Container = styled.SafeAreaView`
+  flex: 1;
+  background-color: #7159c1;
+`;
+
+export const Scroll = styled.ScrollView.attrs({
   contentContainerStyle: {
     flex: 1,
   },
 })`
-  padding: ${Platform.OS === 'ios' ? 50 + getStatusBarHeight() : 50}px 12px 32px;
-  background-color: #7159c1;
+  padding: 32px 12px 32px;
 `;
 
 export const Card = styled.View.attrs({

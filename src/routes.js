@@ -1,3 +1,4 @@
+import React from 'react';
 import { Platform, StatusBar } from 'react-native';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -5,6 +6,8 @@ import { createStackNavigator } from 'react-navigation-stack';
 import Main from '~/pages/Main';
 import Poll from '~/pages/Poll';
 import Stats from '~/pages/Stats';
+
+import HeaderRight from '~/components/HeaderRight';
 
 if (Platform.OS === 'ios') {
   StatusBar.setBarStyle('light-content');
@@ -16,6 +19,7 @@ const Stack = createStackNavigator(
       screen: Main,
       navigationOptions: {
         title: 'Enquetes',
+        headerRight: () => <HeaderRight />,
       },
     },
     Poll: {

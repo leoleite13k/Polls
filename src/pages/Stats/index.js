@@ -8,6 +8,7 @@ import { pollLoading } from '~/store/modules/poll/actions';
 
 import {
   Container,
+  Scroll,
   Card,
   Title,
   Row,
@@ -87,47 +88,49 @@ export default function Stats({ navigation }) {
       {loading || votes.length === 0 ? (
         <Loader />
       ) : (
-        <Card>
-          <Title>Estatísticas</Title>
-          {votes.map((vote) => (
-            <Row key={String(vote.option_id)}>
-              {!home && (
-                <WrapperVote>
-                  {currentVote.option_id === vote.option_id ? (
-                    <IconIo
-                      name="ios-radio-button-on"
-                      size={20}
-                      color="#7159c1"
-                    />
-                  ) : (
-                    <IconIo
-                      name="ios-radio-button-off"
-                      size={20}
-                      color="#7159c1"
-                    />
-                  )}
-                </WrapperVote>
-              )}
-              <WrapperOption>
-                <Option>{vote.option_description}</Option>
-              </WrapperOption>
-              <Animated.View
-                style={{
-                  flex: widthProgress.interpolate({
-                    inputRange: [0, 100],
-                    outputRange: [0, 1],
-                    extrapolate: 'clamp',
-                  }),
-                }}>
-                <Bar width={vote.percent_bar}>
-                  <Votes>{vote.qty}</Votes>
-                </Bar>
-              </Animated.View>
-            </Row>
-          ))}
+        <Scroll>
+          <Card>
+            <Title>Estatísticas</Title>
+            {votes.map((vote) => (
+              <Row key={String(vote.option_id)}>
+                {!home && (
+                  <WrapperVote>
+                    {currentVote.option_id === vote.option_id ? (
+                      <IconIo
+                        name="ios-radio-button-on"
+                        size={20}
+                        color="#ccc"
+                      />
+                    ) : (
+                      <IconIo
+                        name="ios-radio-button-off"
+                        size={20}
+                        color="#ccc"
+                      />
+                    )}
+                  </WrapperVote>
+                )}
+                <WrapperOption>
+                  <Option>{vote.option_description}</Option>
+                </WrapperOption>
+                <Animated.View
+                  style={{
+                    flex: widthProgress.interpolate({
+                      inputRange: [0, 100],
+                      outputRange: [0, 1],
+                      extrapolate: 'clamp',
+                    }),
+                  }}>
+                  <Bar width={vote.percent_bar}>
+                    <Votes>{vote.qty}</Votes>
+                  </Bar>
+                </Animated.View>
+              </Row>
+            ))}
 
-          <Button text="Voltar" marginTop={56} onPress={handleBack} />
-        </Card>
+            <Button text="Voltar" marginTop={56} onPress={handleBack} />
+          </Card>
+        </Scroll>
       )}
     </Container>
   );

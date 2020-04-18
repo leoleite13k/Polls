@@ -4,7 +4,7 @@ import IconIo from 'react-native-vector-icons/Ionicons';
 
 import { addVoteRequest } from '~/store/modules/vote/actions';
 
-import { Container, Card, Question, Select, Answer } from './styles';
+import { Container, Scroll, Card, Question, Select, Answer } from './styles';
 
 import Loader from '~/components/Loader';
 import Button from '~/components/Button';
@@ -13,7 +13,7 @@ export default function Poll({ navigation }) {
   const [optionSelected, setOptionSelected] = useState(null);
 
   const currentPoll = useSelector((state) => state.poll.currentPoll);
-  const selecting = useSelector((state) => state.poll.selecting);
+  const loading = useSelector((state) => state.poll.loading);
   const adding = useSelector((state) => state.vote.adding);
 
   const dispatch = useDispatch();
@@ -35,40 +35,42 @@ export default function Poll({ navigation }) {
 
   return (
     <Container>
-      {selecting ? (
+      {loading ? (
         <Loader />
       ) : (
-        <Card>
-          <>
-            <Question>{currentPoll.poll_description}</Question>
-            {currentPoll.options.map((option) => (
-              <Select
-                key={String(option.option_id)}
-                onPress={() => handleSelectOption(option)}>
-                {option.option_id === optionSelected ? (
-                  <IconIo
-                    name="ios-radio-button-on"
-                    size={24}
-                    color="#7159c1"
-                  />
-                ) : (
-                  <IconIo
-                    name="ios-radio-button-off"
-                    size={24}
-                    color="#7159c1"
-                  />
-                )}
-                <Answer>{option.option_description}</Answer>
-              </Select>
-            ))}
+        <Scroll>
+          {currentPoll.options && (
+            <Card>
+              <Question>{currentPoll.poll_description}</Question>
+              {currentPoll.options.map((option) => (
+                <Select
+                  key={String(option.option_id)}
+                  onPress={() => handleSelectOption(option)}>
+                  {option.option_id === optionSelected ? (
+                    <IconIo
+                      name="ios-radio-button-on"
+                      size={24}
+                      color="#7159c1"
+                    />
+                  ) : (
+                    <IconIo
+                      name="ios-radio-button-off"
+                      size={24}
+                      color="#7159c1"
+                    />
+                  )}
+                  <Answer>{option.option_description}</Answer>
+                </Select>
+              ))}
 
-            <Button
-              disabled={!optionSelected}
-              text={adding ? 'Enviando...' : 'Responder'}
-              onPress={handleSendAnswer}
-            />
-          </>
-        </Card>
+              <Button
+                disabled={!optionSelected}
+                text={adding ? 'Enviando...' : 'Responder'}
+                onPress={handleSendAnswer}
+              />
+            </Card>
+          )}
+        </Scroll>
       )}
     </Container>
   );

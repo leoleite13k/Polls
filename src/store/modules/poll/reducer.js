@@ -4,7 +4,6 @@ const INITIAL_STATE = {
   data: [],
   currentPoll: {},
   adding: false,
-  selecting: false,
   loading: false,
   error: false,
 };
@@ -25,13 +24,12 @@ export default function poll(state = INITIAL_STATE, action) {
       }
 
       case '@poll/SELECT_POLL_REQUEST': {
-        draft.selecting = true;
+        draft.loading = true;
         break;
       }
 
       case '@poll/SELECT_POLL_SUCCESS': {
         draft.currentPoll = action.payload.data;
-        draft.selecting = false;
         draft.loading = false;
         draft.error = false;
         break;
@@ -44,7 +42,6 @@ export default function poll(state = INITIAL_STATE, action) {
 
       case '@poll/ADD_POLL_SUCCESS': {
         draft.adding = false;
-        draft.selecting = false;
         draft.loading = false;
         draft.error = false;
         break;

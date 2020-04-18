@@ -1,12 +1,16 @@
 import styled from 'styled-components/native';
 
-export const Container = styled.ScrollView.attrs({
+export const Container = styled.SafeAreaView`
+  flex: 1;
+  background-color: #7159c1;
+`;
+
+export const Scroll = styled.ScrollView.attrs({
   contentContainerStyle: {
     flex: 1,
   },
 })`
   padding-top: 16px;
-  background-color: #7159c1;
 `;
 
 export const Card = styled.View.attrs({

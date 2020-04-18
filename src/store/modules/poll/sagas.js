@@ -26,15 +26,23 @@ export function* selectPoll({ payload }) {
   try {
     const { id, navigation, screen } = payload;
 
-    const { data } = yield call(api.get, `poll/${id}`);
-
-    yield put(selectPollSuccess(data));
-
     if (screen) {
       navigation.navigate(screen, { home: screen === 'Stats' });
     }
+
+    const { data } = yield call(api.get, `poll/${id}`);
+
+    yield put(selectPollSuccess(data));
   } catch (error) {
-    Alert.alert('Erro ao carregar', 'Falha ao carregar a enquete');
+    const { navigation, screen } = payload;
+
+    navigation.navigate('Home');
+    Alert.alert(
+      'Erro ao carregar',
+      `Falha ao carregar ${
+        screen === 'Stats' ? 'as estatísticas' : 'a enquete'
+      }`
+    );
     yield put(pollFailure());
   }
 }
