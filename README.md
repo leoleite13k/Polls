@@ -45,3 +45,12 @@ Na tela da enquete é possível ver as opções de respostas e selecionar uma de
 **Tela da Estatística**
 
 Na tela de estatística será possível visualizar as opções e suas respectivas quantidade de votos e qual foi sua escolha de voto, pressionando "Voltar" será encaminhado  para a tela inicial.
+
+### Problemas / Solução
+Caso ocorra algum problema para build no Android, fazer o seguintes passoas abaixo:
+
+Inserir a linha abaixo no arquivo /android/app/build.gradle, dentro das **defaultConfig {}**
+
+```
+multiDexEnabled true
+```
